@@ -5,14 +5,23 @@
 - dev_series = next_dev_series(real_page)
 - getting_started_guides = project_description.nil? || stable_series.nil? ? [] : getting_started_guides(project_description, stable_series)
 
-- if not getting_started_guides.empty?
-  - getting_started_guides.each do |getting_started_guide|
-    .jumbotron-button
-      %a.ui.small.right.labeled.icon.button{:href => "#{getting_started_guide&.html_url}"}
-        %i.right.arrow.icon
-        Getting started
-        - if getting_started_guide.name
-          = "(#{getting_started_guide.name})"
+- if getting_started_guides.length >= 2
+  .jumbotron-button
+    .ui.small.label.left.attached
+      Getting started
+    .ui.small.vertical.buttons
+      - getting_started_guides.each do |getting_started_guide|
+        %a.ui.right.labeled.icon.button{:href => "#{getting_started_guide&.html_url}"}
+          %i.right.arrow.icon
+          = "#{getting_started_guide.name}"
+- elsif getting_started_guides.length == 1
+  - getting_started_guide = getting_started_guides[0]
+  .jumbotron-button
+    %a.ui.small.right.labeled.icon.button{:href => "#{getting_started_guide&.html_url}"}
+      %i.right.arrow.icon
+      Getting started
+      - if getting_started_guide.name
+        = "(#{getting_started_guide.name})"
 - if not (stable_series.nil? && dev_series.nil?)
   - unless stable_series.nil?
     .jumbotron-button
