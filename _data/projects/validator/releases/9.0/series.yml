@@ -26,7 +26,11 @@ maven:
 status: limited-support
 integration_constraints:
   java:
-    version: 17, 21, 23 or 24
+    version:
+      - 17
+      - 21
+      - 23
+      - 24
   jakarta_ee_bv:
     version: 3.1
   jakarta_ee:
